@@ -52,8 +52,8 @@ The "Party Mode" adds a techno vibe to the game with upbeat background music, a 
   - [Website](https://dustinmoore.dev)
 
 ## Screenshots
-![Classic Mode](https://via.placeholder.com/400x300?text=Classic+Mode)
-![Party Mode](https://via.placeholder.com/400x300?text=Party+Mode)
+![Professional Mode](./pro.png)
+![Party Mode](./screenshot.png)
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
