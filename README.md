@@ -3,13 +3,12 @@
 ![Tic Tac Toe](./screenshot.png)
 
 ## About
-This Tic Tac Toe application is a dynamic web-based implementation of the classic game, featuring an interactive user interface and an exciting "Party Mode" to liven up your gameplay. It is a two-player game, where users can take turns to mark cells until there is a winner or the game ends in a draw. The game also includes a computer opponent for added challenge.
+This Tic Tac Toe application is a dynamic web-based implementation of the classic game, featuring an interactive user interface and an exciting "Party Mode" to liven up your gameplay. It is a game where users can take turns to mark cells until there is a winner or the game ends in a draw. The game also includes a computer opponent for added challenge.
 
 The "Party Mode" adds a techno vibe to the game with upbeat background music, a colorful gradient background, and dynamic fireworks effects to celebrate your victory in style!
 
 ## Features
 - **Classic Tic Tac Toe Gameplay**: Enjoy the familiar 3x3 grid game.
-- **Two Player Game**: Play against a friend or switch to playing against the computer.
 - **Party Mode**: Enhance the gaming experience with techno music, a gradient background, and a celebratory fireworks effect.
 - **Responsive Design**: Optimized for different screen sizes, so you can play anywhere.
 - **Smooth Animations**: Transitions and hover effects make the interface visually appealing.
