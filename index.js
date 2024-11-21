@@ -8,6 +8,8 @@ Website: https://dustinmoore.dev
 // This code implements a dynamic Tic Tac Toe game featuring a party mode with techno music and fireworks effects.
 
 let currentPlayer = 'X';
+let partyInterval; // Declare globally
+let fireworksCanvas, ctx; // Declare globally for access across functions
 
 document.addEventListener('DOMContentLoaded', (event) => {
     createTable();
@@ -108,17 +110,23 @@ function togglePartyMode() {
 }
 
 function startFireworks() {
-    const fireworksCanvas = document.getElementById('fireworks');
+    fireworksCanvas = document.getElementById('fireworks');
     fireworksCanvas.width = window.innerWidth;
     fireworksCanvas.height = window.innerHeight;
-    partyInterval = setInterval(drawBetterFirework, 300);
+    ctx = fireworksCanvas.getContext('2d');
+    partyInterval = setInterval(() => drawBetterFirework(), 300);
 }
 
 function stopFireworks() {
     clearInterval(partyInterval);
+    if (ctx) {
+        ctx.clearRect(0, 0, fireworksCanvas.width, fireworksCanvas.height);
+    }
 }
 
 function drawBetterFirework() {
+    if (!fireworksCanvas || !ctx) return;
+
     const x = Math.random() * fireworksCanvas.width;
     const y = Math.random() * fireworksCanvas.height;
     const numRays = 12;
@@ -126,16 +134,21 @@ function drawBetterFirework() {
     const colors = ['#ff00cc', '#00ffff', '#ff69b4', '#ff1493', '#00ff00', '#ffff00'];
     const color = colors[Math.floor(Math.random() * colors.length)];
 
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(x, y, maxRadius / 4, 0, Math.PI * 2);
+    ctx.fill();
+
     for (let i = 0; i < numRays; i++) {
         const angle = (i * Math.PI * 2) / numRays;
         const xEnd = x + Math.cos(angle) * maxRadius;
         const yEnd = y + Math.sin(angle) * maxRadius;
 
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.moveTo(x, y);
         ctx.lineTo(xEnd, yEnd);
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 2;
         ctx.stroke();
     }
 }
