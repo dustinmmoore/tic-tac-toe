@@ -3,15 +3,14 @@ Author: Dustin Moore
 LinkedIn: https://www.linkedin.com/in/dustinmmoore
 GitHub: https://github.com/dustinmmoore
 Website: https://dustinmoore.dev
+Date: 11/10/2024
 */
 
-// This code implements a dynamic Tic Tac Toe game featuring a party mode with techno music and fireworks effects.
-
 let currentPlayer = 'X';
-let partyInterval; // Declare globally
-let fireworksCanvas, ctx; // Declare globally for access across functions
+let partyInterval;
+let fireworksCanvas, ctx;
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     createTable();
 });
 
