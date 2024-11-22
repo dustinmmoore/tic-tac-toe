@@ -27,15 +27,17 @@ Date: 11/10/2024
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    margin-top: 50px;
     background-color: var(--background-color);
     color: var(--text-color);
     transition: all 0.5s ease;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     min-height: 100vh;
     width: 100%;
-    overflow-x: hidden;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 table {
     margin: 20px auto;
@@ -84,16 +86,20 @@ button:active {
 .party-mode {
     background: var(--party-background);
     color: #ffffff;
-    background-size: 100% 100%;
+    background-size: 200% 200%;
     min-height: 100vh;
-    width: 100vw;
-    position: fixed;
+    width: 100%;
+    position: absolute;  /* Changed from fixed to absolute */
     top: 0;
     left: 0;
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 0;
 }
 .party-mode td {
     background-color: var(--party-td-background);
@@ -120,26 +126,47 @@ button:active {
     pointer-events: none;
     z-index: var(--fireworks-z-index);
 }
+#tableContainer {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 300px;
+}
 @media (max-width: 600px) {
     body {
-        margin: 0;
         padding: 10px;
-        height: 100vh;
-        width: 100vw;
-        position: fixed;
-        overflow: hidden;
+        min-height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
     }
     
     .party-mode {
-        background-size: cover;
-        background-position: center;
         padding: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        position: absolute;
+        height: auto;
+        min-height: 100vh;
+        width: 100%;
+        background-attachment: fixed;
     }
-    
+
+    #tableContainer {
+        margin: 20px auto;
+        position: relative;
+        z-index: 2;  /* Increased z-index */
+    }
+
+    #fireworks {
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    h1 {
+        margin-top: 10px;
+        position: relative;
+        z-index: 1;
+    }
+
     td {
         height: 80px;
         font-size: 1.2em;
@@ -154,4 +181,8 @@ button:active {
     button {
         width: 90%;
     }
+}
+
+html {
+    overflow-y: scroll;
 }

@@ -127,8 +127,12 @@ function togglePartyMode() {
 
 function startFireworks() {
     fireworksCanvas = document.getElementById('fireworks');
-    fireworksCanvas.width = window.innerWidth;
-    fireworksCanvas.height = window.innerHeight;
+    const updateCanvasSize = () => {
+        fireworksCanvas.width = window.innerWidth;
+        fireworksCanvas.height = window.innerHeight;
+    };
+    updateCanvasSize();
+    window.addEventListener('resize', updateCanvasSize);
     ctx = fireworksCanvas.getContext('2d');
     partyInterval = setInterval(() => drawBetterFirework(), 300);
 }
