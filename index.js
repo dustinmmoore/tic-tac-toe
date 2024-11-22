@@ -12,6 +12,8 @@ let fireworksCanvas, ctx;
 
 document.addEventListener('DOMContentLoaded', () => {
     createTable();
+    const partyMusic = document.getElementById('partyMusic');
+    partyMusic.load(); // Ensure the audio is loaded and ready to play
 });
 
 function createTable() {
@@ -30,7 +32,22 @@ function createTable() {
     }
 
     tableContainer.appendChild(table);
+    adjustTableForMobile();
 }
+
+function adjustTableForMobile() {
+    if (window.innerWidth <= 600) {
+        document.querySelectorAll('td').forEach(cell => {
+            cell.style.height = '80px';
+            cell.style.fontSize = '1.2em';
+        });
+        document.querySelectorAll('button').forEach(button => {
+            button.style.width = '90%';
+        });
+    }
+}
+
+window.addEventListener('resize', adjustTableForMobile);
 
 function makeMove(cell) {
     if (cell.innerHTML === '') {

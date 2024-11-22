@@ -118,4 +118,10 @@ button:active {
         padding: 8px 16px;
         font-size: 0.9em;
     }
+    table {
+        width: 90%;
+    }
+    button {
+        width: 90%;
+    }
 }
