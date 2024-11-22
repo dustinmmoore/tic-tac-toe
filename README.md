@@ -1,7 +1,5 @@
 # Tic Tac Toe - Dynamic Web Application
 
-![Tic Tac Toe](./screenshot.png)
-
 ## About
 This Tic Tac Toe application is a dynamic web-based implementation of the classic game, featuring an interactive user interface and an exciting "Party Mode" to liven up your gameplay. It is a game where users can take turns to mark cells until there is a winner or the game ends in a draw. The game also includes a computer opponent for added challenge.
 
