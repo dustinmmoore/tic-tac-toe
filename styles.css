@@ -84,17 +84,16 @@ button:active {
 .party-mode {
     background: var(--party-background);
     color: #ffffff;
-    background-size: cover; /* Ensure the background covers the entire screen */
-    background-position: center; /* Center the background image */
-    min-height: 100vh; /* Ensure the background spans the entire viewport height */
-    width: 100vw; /* Ensure the background spans the entire viewport width */
-    background-attachment: fixed;
     background-size: 100% 100%;
+    min-height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
-    position: relative;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 .party-mode td {
     background-color: var(--party-td-background);
@@ -125,15 +124,20 @@ button:active {
     body {
         margin: 0;
         padding: 10px;
-        min-height: -webkit-fill-available; /* For iOS Safari */
-        margin-top: 20px;
-        background-size: cover; /* Ensure the background covers the entire screen */
-        background-position: center; /* Center the background image */
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        overflow: hidden;
     }
     
     .party-mode {
-        min-height: -webkit-fill-available; /* For iOS Safari */
+        background-size: cover;
+        background-position: center;
         padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     
     td {
