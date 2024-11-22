@@ -51,8 +51,8 @@ The "Party Mode" adds a techno vibe to the game with upbeat background music, a 
   - [Website](https://dustinmoore.dev)
 
 ## Screenshots
-![Professional Mode](./pro.png)
-![Party Mode](./screenshot.png)
+<img src="./pro.png" alt="Professional Mode" width="300">
+<img src="./party.png" alt="Party Mode" width="300">
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
@@ -65,6 +65,17 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - Add difficulty levels for the computer opponent.
 - Improve visual effects in Party Mode.
 - Implement multiplayer over the internet.
+
+## Tags
+- Web Developer
+- Frontend Developer
+- HTML5
+- CSS3
+- JavaScript
+- Responsive Design
+- Game Development
+- UI/UX
+- Interactive Web Applications
 
 Enjoy the game, and have fun with Party Mode! 🎉
 
