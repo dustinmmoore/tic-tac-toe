@@ -80,6 +80,10 @@ button:active {
 .party-mode {
     background: var(--party-background);
     color: #ffffff;
+    background-size: cover; /* Ensure the background covers the entire screen */
+    background-position: center; /* Center the background image */
+    min-height: 100vh; /* Ensure the background spans the entire viewport height */
+    width: 100vw; /* Ensure the background spans the entire viewport width */
 }
 .party-mode td {
     background-color: var(--party-td-background);
