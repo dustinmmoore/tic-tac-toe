@@ -56,17 +56,34 @@ Date: 11/10/2024
       }
     }
     </script>
+    
+    <!-- Favicon and PWA support -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#007bff">
+    
+    <!-- Cache control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 </head>
 <body>
+    <div id="loadingScreen" class="loading-screen">Loading...</div>
     <h1>Tic Tac Toe</h1>
     <button id="modeToggleButton" onclick="togglePartyMode()">Party Mode</button>
     <div id="tableContainer"></div>
     <button onclick="resetBoard()">Reset</button>
     <canvas id="fireworks"></canvas>
-    <audio id="partyMusic" loop>
+    <audio id="partyMusic" loop preload="auto">
         <source src="https://www.bensound.com/bensound-music/bensound-dance.mp3" type="audio/mpeg">
+        <source src="https://www.bensound.com/bensound-music/bensound-dance.ogg" type="audio/ogg">
         Your browser does not support the audio element.
     </audio>
+    <noscript>
+        <p class="error-message">JavaScript is required to play this game.</p>
+    </noscript>
+    <script src="service-worker.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

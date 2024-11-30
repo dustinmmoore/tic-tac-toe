@@ -6,14 +6,44 @@ Website: https://dustinmoore.dev
 Date: 11/10/2024
 */
 
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .catch(err => console.error('Service Worker registration failed:', err));
+    });
+}
+
 let currentPlayer = 'X';
 let partyInterval;
 let fireworksCanvas, ctx;
 
 document.addEventListener('DOMContentLoaded', () => {
-    createTable();
+    const loadingScreen = document.getElementById('loadingScreen');
     const partyMusic = document.getElementById('partyMusic');
-    partyMusic.load(); // Ensure the audio is loaded and ready to play
+    
+    try {
+        createTable();
+        
+        // Initialize audio
+        partyMusic.load();
+        partyMusic.volume = 0.5; // Set volume to 50%
+        
+        // Error handling for audio
+        partyMusic.addEventListener('error', (e) => {
+            console.error('Audio loading error:', e);
+            alert('Unable to load party music. Please check your internet connection.');
+        });
+
+        // Add canplaythrough event listener
+        partyMusic.addEventListener('canplaythrough', () => {
+            console.log('Audio loaded and ready to play');
+        });
+    } catch (error) {
+        console.error('Initialization error:', error);
+        document.body.innerHTML = '<p class="error-message">Sorry, there was an error loading the game. Please refresh the page.</p>';
+    } finally {
+        loadingScreen.classList.add('hidden');
+    }
 });
 
 function createTable() {
@@ -107,21 +137,35 @@ function resetBoard() {
 }
 
 function togglePartyMode() {
-    document.body.classList.toggle('party-mode');
-    const modeToggleButton = document.getElementById('modeToggleButton');
-    const partyMusic = document.getElementById('partyMusic');
+    try {
+        document.body.classList.toggle('party-mode');
+        const modeToggleButton = document.getElementById('modeToggleButton');
+        const partyMusic = document.getElementById('partyMusic');
 
-    if (document.body.classList.contains('party-mode')) {
-        modeToggleButton.innerText = 'Professional Mode';
-        partyMusic.play().catch(error => {
-            console.log('Background music playback error:', error);
-        });
-        startFireworks();
-    } else {
-        modeToggleButton.innerText = 'Party Mode';
-        partyMusic.pause();
-        partyMusic.currentTime = 0;
-        stopFireworks();
+        if (document.body.classList.contains('party-mode')) {
+            modeToggleButton.innerText = 'Professional Mode';
+            // Add user interaction promise
+            const playPromise = partyMusic.play();
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        console.log('Audio playback started');
+                    })
+                    .catch(error => {
+                        console.error('Playback error:', error);
+                        alert('Unable to play music. Try clicking the button again.');
+                    });
+            }
+            startFireworks();
+        } else {
+            modeToggleButton.innerText = 'Party Mode';
+            partyMusic.pause();
+            partyMusic.currentTime = 0;
+            stopFireworks();
+        }
+    } catch (error) {
+        console.error('Party mode error:', error);
+        alert('Error toggling party mode. Please try again.');
     }
 }
 

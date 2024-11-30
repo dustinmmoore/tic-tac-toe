@@ -6,7 +6,7 @@ Website: https://dustinmoore.dev
 Date: 11/10/2024
 */
 
-/* Meta tags for SEO and job search */
+
 :root {
     --primary-color: #007bff;
     --secondary-color: #0056b3;
@@ -38,7 +38,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
+
+body.party-mode {
+    background: linear-gradient(45deg, #ff00cc, #3333ff, #ff00cc, #3333ff);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #ffffff;
+}
+
 table {
     margin: 20px auto;
     border-collapse: collapse;
@@ -76,6 +85,8 @@ button {
     transition: background-color 0.3s ease, transform 0.3s ease;
     width: 100%;
     max-width: 200px;
+    position: relative;
+    z-index: 2;
 }
 button:hover {
     background-color: var(--button-hover-color);
@@ -83,26 +94,9 @@ button:hover {
 button:active {
     transform: scale(0.95);
 }
-.party-mode {
-    background: var(--party-background);
-    color: #ffffff;
-    background-size: 200% 200%;
-    min-height: 100vh;
-    width: 100%;
-    position: absolute;  /* Changed from fixed to absolute */
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 0;
-}
+
 .party-mode td {
-    background-color: var(--party-td-background);
+    background-color: rgba(51, 51, 255, 0.8);
     border-color: var(--party-td-border);
     color: #ffff00;
 }
@@ -127,10 +121,15 @@ button:active {
     z-index: var(--fireworks-z-index);
 }
 #tableContainer {
+    background: transparent;
     position: relative;
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     max-width: 300px;
+}
+h1 {
+    position: relative;
+    z-index: 2;
 }
 @media (max-width: 600px) {
     body {
@@ -152,7 +151,7 @@ button:active {
     #tableContainer {
         margin: 20px auto;
         position: relative;
-        z-index: 2;  /* Increased z-index */
+        z-index: 2; 
     }
 
     #fireworks {
@@ -185,4 +184,37 @@ button:active {
 
 html {
     overflow-y: scroll;
+}
+
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-size: 1.5em;
+}
+
+.error-message {
+    color: #ff0000;
+    padding: 20px;
+    text-align: center;
+    background: #ffe6e6;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
