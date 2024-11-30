@@ -65,7 +65,8 @@ td {
     cursor: pointer;
     background-color: #ffffff;
     color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    transform: scale(1);
 }
 td:hover {
     background-color: var(--primary-color);
@@ -217,4 +218,14 @@ html {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+}
+
+.cell-animated {
+    animation: cellPop 0.3s ease-out;
+}
+
+@keyframes cellPop {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }

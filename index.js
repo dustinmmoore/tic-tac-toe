@@ -55,14 +55,86 @@ function createTable() {
         const row = document.createElement('tr');
         for (let j = 0; j < 3; j++) {
             const cell = document.createElement('td');
-            cell.onclick = function() { makeMove(this); };
+            cell.dataset.index = i * 3 + j;
             row.appendChild(cell);
         }
         table.appendChild(row);
     }
 
+    // Use event delegation instead of individual cell handlers
+    table.addEventListener('click', handleCellClick);
     tableContainer.appendChild(table);
     adjustTableForMobile();
+}
+
+// Debounce function to prevent rapid clicks
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+const handleCellClick = debounce((event) => {
+    const cell = event.target;
+    if (cell.tagName === 'TD' && cell.innerHTML === '') {
+        makeMove(cell);
+    }
+}, 250);
+
+function makeMove(cell) {
+    cell.innerHTML = currentPlayer;
+    cell.classList.add('cell-animated');
+
+    if (checkWinner()) {
+        setTimeout(() => {
+            alert(`Player ${currentPlayer} wins!`);
+            resetBoard();
+        }, 100);
+    } else if (isFull()) {
+        setTimeout(() => {
+            alert("It's a tie!");
+            resetBoard();
+        }, 100);
+    } else {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        if (currentPlayer === 'O') {
+            // Delay computer move to prevent UI blocking
+            setTimeout(computerMove, 250);
+        }
+    }
+}
+
+function computerMove() {
+    const emptyCells = Array.from(document.querySelectorAll('td')).filter(cell => cell.innerHTML === '');
+    if (emptyCells.length > 0) {
+        const randomIndex = Math.floor(Math.random() * emptyCells.length);
+        const cell = emptyCells[randomIndex];
+        
+        requestAnimationFrame(() => {
+            cell.innerHTML = 'O';
+            cell.classList.add('cell-animated');
+            
+            if (checkWinner()) {
+                setTimeout(() => {
+                    alert('Player O wins!');
+                    resetBoard();
+                }, 100);
+            } else if (isFull()) {
+                setTimeout(() => {
+                    alert("It's a tie!");
+                    resetBoard();
+                }, 100);
+            } else {
+                currentPlayer = 'X';
+            }
+        });
+    }
 }
 
 function adjustTableForMobile() {
@@ -78,41 +150,6 @@ function adjustTableForMobile() {
 }
 
 window.addEventListener('resize', adjustTableForMobile);
-
-function makeMove(cell) {
-    if (cell.innerHTML === '') {
-        cell.innerHTML = currentPlayer;
-        if (checkWinner()) {
-            alert(`Player ${currentPlayer} wins!`);
-            resetBoard();
-        } else if (isFull()) {
-            alert("It's a tie!");
-            resetBoard();
-        } else {
-            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-            if (currentPlayer === 'O') {
-                computerMove();
-            }
-        }
-    }
-}
-
-function computerMove() {
-    const emptyCells = Array.from(document.querySelectorAll('td')).filter(cell => cell.innerHTML === '');
-    if (emptyCells.length > 0) {
-        const randomIndex = Math.floor(Math.random() * emptyCells.length);
-        emptyCells[randomIndex].innerHTML = 'O';
-        if (checkWinner()) {
-            alert('Player O wins!');
-            resetBoard();
-        } else if (isFull()) {
-            alert("It's a tie!");
-            resetBoard();
-        } else {
-            currentPlayer = 'X';
-        }
-    }
-}
 
 function checkWinner() {
     const board = Array.from(document.querySelectorAll('td')).map(cell => cell.innerHTML);
