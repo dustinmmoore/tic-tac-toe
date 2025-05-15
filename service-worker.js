@@ -2,10 +2,9 @@ const CACHE_NAME = 'tictactoe-v1';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
-    '/styles.css',
-    '/index.js',
-    '/favicon.png',
-    '/apple-touch-icon.png'
+    '/assets/css/styles.css',
+    '/assets/js/index.js',
+    '/assets/images/tic-tac-toe.jpg'
 ];
 
 self.addEventListener('install', (event) => {

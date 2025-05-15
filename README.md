@@ -11,6 +11,24 @@ The "Party Mode" adds a techno vibe to the game with upbeat background music, a 
 - **Responsive Design**: Optimized for different screen sizes, so you can play anywhere.
 - **Smooth Animations**: Transitions and hover effects make the interface visually appealing.
 
+## Project Structure
+```
+tic-tac-toe/
+│
+├── assets/
+│   ├── css/
+│   │   └── styles.css
+│   ├── js/
+│   │   └── index.js
+│   └── images/
+│       └── tic-tac-toe.jpg
+│
+├── index.html
+├── manifest.json
+├── service-worker.js
+└── README.md
+```
+
 ## Technologies Used
 - **HTML5**: Markup for the structure of the app.
 - **CSS3**: Styling for clean, modern visuals, with special effects in Party Mode.
@@ -49,7 +67,7 @@ The "Party Mode" adds a techno vibe to the game with upbeat background music, a 
   - [Website](https://dustinmoore.dev)
 
 ## Screenshots
-<img src="./tic-tac-toe.jpg" alt="Screenshot">
+<img src="./assets/images/tic-tac-toe.jpg" alt="Screenshot">
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
